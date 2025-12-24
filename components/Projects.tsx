@@ -36,7 +36,7 @@ const projects: Project[] = [
 
         description: "Medical tourism platform featuring a teleconsultation portal for international patients. Designed for trust and accessibility.",
         tags: ["React", "WebRTC", "Tailwind"],
-        link: "https://medivoyage.com",
+        link: "https://mymedivoyage.com",
         image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop", // Medical/Clean vibe
 
     },
@@ -45,7 +45,7 @@ const projects: Project[] = [
 
         description: "Luxury property showcase featuring a dark maroon aesthetic, immersive galleries, and premium service listings.",
         tags: ["Next.js", "GSAP", "Radix UI"],
-        link: "https://treasure-residences.com",
+        link: "https://katewacompanies.in",
         image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop", // Luxury Interior
 
     }
