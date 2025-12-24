@@ -8,14 +8,14 @@ import { ArrowRight } from "lucide-react"; // Requires: npm install lucide-react
 
 export function Hero() {
     return (
-        <section className="w-full h-screen min-h-[800px] bg-black/[0.96] relative overflow-hidden flex items-center">
+        <section className="w-full min-h-[100dvh] md:h-screen md:min-h-[800px] bg-black/[0.96] relative overflow-hidden flex flex-col md:flex-row items-center">
             {/* Spotlight for dramatic lighting */}
             <Spotlight
                 className="-top-40 left-0 md:left-60 md:-top-20"
                 fill="white"
             />
 
-            <div className="container mx-auto px-4 md:px-8 flex flex-col-reverse md:flex-row h-full items-center">
+            <div className="container mx-auto px-4 md:px-8 flex flex-col-reverse md:flex-row h-full items-center justify-center md:justify-between py-24 md:py-0">
 
                 {/* Left Content: Text & CTA */}
                 <div className="flex-1 py-12 md:py-0 relative z-20 flex flex-col justify-center gap-6">
@@ -27,7 +27,7 @@ export function Hero() {
                         transition={{ duration: 0.5 }}
                         className="w-fit px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm text-zinc-400 text-xs uppercase tracking-widest font-medium"
                     >
-                        Based in India
+                        Based in Jaipur
                     </motion.div>
 
                     {/* Headline: Punchier and bolder */}
@@ -83,7 +83,7 @@ export function Hero() {
                 {/* Right Content: 3D Scene */}
                 {/* Added 'pointer-events-none' to preventing Spline from blocking text clicks if it overlaps, 
                     unless the Spline scene is interactive (then remove it). */}
-                <div className="flex-1 w-full h-[500px] md:h-full relative z-10">
+                <div className="flex-1 w-full h-[40vh] md:h-full relative z-10 min-h-[300px]">
                     {/* Gradient overlay to blend the 3D scene into the background at the bottom */}
                     <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-black/[0.96] to-transparent z-20 pointer-events-none" />
 

@@ -20,40 +20,40 @@ const projects: Project[] = [
         tags: ["Next.js", "Framer Motion", "GSAP"],
         link: "https://thecraftings.com", // Replace with actual link
         image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&auto=format&fit=crop", // Abstract/Creative vibe
-        
+
     },
     {
         title: "Razlot",
-        
+
         description: "Scalable web application architecture deployed on AWS. Focuses on high-performance delivery and seamless user management.",
         tags: ["Next.js", "AWS Amplify", "Tailwind CSS"],
         link: "https://razlot.com",
         image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=900&auto=format&fit=crop", // Tech/Network vibe
-        
+
     },
     {
         title: "MediVoyage",
-        
+
         description: "Medical tourism platform featuring a teleconsultation portal for international patients. Designed for trust and accessibility.",
         tags: ["React", "WebRTC", "Tailwind"],
         link: "https://medivoyage.com",
         image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop", // Medical/Clean vibe
-        
+
     },
     {
         title: "Treasure Residences",
-       
+
         description: "Luxury property showcase featuring a dark maroon aesthetic, immersive galleries, and premium service listings.",
         tags: ["Next.js", "GSAP", "Radix UI"],
         link: "https://treasure-residences.com",
         image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop", // Luxury Interior
-      
+
     }
 ]
 
 export function Projects() {
     return (
-        <section className="w-full py-24 bg-black relative z-10">
+        <section className="w-full py-12 md:py-24 bg-black relative z-10">
             <div className="max-w-6xl mx-auto px-4 md:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

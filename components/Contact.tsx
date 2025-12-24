@@ -25,7 +25,7 @@ export function Contact() {
     }
 
     return (
-        <section className="w-full py-16 lg:py-24 bg-black relative overflow-hidden" id="contact">
+        <section className="w-full py-12 md:py-16 lg:py-24 bg-black relative overflow-hidden" id="contact">
             <div className="max-w-6xl mx-auto px-4 md:px-8 relative z-10">
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
