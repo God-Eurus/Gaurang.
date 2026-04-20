@@ -22,11 +22,11 @@ const projects: Project[] = [
         image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&auto=format&fit=crop",
     },
     {
-        title: "Maison Noiii",
+        title: "Maison No. 3",
         description: "A digital presence for a forward-thinking creative marketing agency. Features a minimalist, luxury aesthetic and elegant animations to showcase premium campaigns.",
         tags: ["Next.js", "GSAP", "Tailwind CSS"],
         link: "https://www.maisonnoiii.com/",
-        image: "https://images.unsplash.com/photo-1493421445236-5092fc57a262?q=80&w=1200&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1629904853716-f0bc54eea481?q=80&w=2070&auto=format&fit=crop",
     },
     {
         title: "Razlot",
