@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, Variants } from 'framer-motion'
 import { ArrowUpRight } from "lucide-react"
 import Link from 'next/link'
 import Image from 'next/image'
@@ -22,11 +22,11 @@ const projects: Project[] = [
         image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&auto=format&fit=crop",
     },
     {
-        title: "Maison NO. 3",
+        title: "Maison Noiii",
         description: "A digital presence for a forward-thinking creative marketing agency. Features a minimalist, luxury aesthetic and elegant animations to showcase premium campaigns.",
         tags: ["Next.js", "GSAP", "Tailwind CSS"],
         link: "https://www.maisonnoiii.com/",
-        image: "https://images.unsplash.com/photo-1629904853716-f0bc54eea481?q=80&w=2070&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1493421445236-5092fc57a262?q=80&w=1200&auto=format&fit=crop",
     },
     {
         title: "Razlot",
@@ -55,7 +55,8 @@ const projects: Project[] = [
 const AnimatedText = ({ text }: { text: string }) => {
     const words = text.split(" ");
 
-    const container = {
+    // Added explicit Variants typing here
+    const container: Variants = {
         hidden: { opacity: 0 },
         visible: (i = 1) => ({
             opacity: 1,
@@ -63,7 +64,8 @@ const AnimatedText = ({ text }: { text: string }) => {
         }),
     };
 
-    const child = {
+    // Added explicit Variants typing here
+    const child: Variants = {
         visible: {
             opacity: 1,
             y: 0,
@@ -87,6 +89,20 @@ const AnimatedText = ({ text }: { text: string }) => {
             ))}
         </motion.p>
     );
+};
+
+// Explicit typings for the tags to satisfy Next.js build
+const tagContainerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: { staggerChildren: 0.1, delayChildren: 0.5 }
+    }
+};
+
+const tagVariants: Variants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
 };
 
 export function Projects() {
@@ -184,27 +200,18 @@ export function Projects() {
                                     {/* Staggered Word Reveal Description */}
                                     <AnimatedText text={project.description} />
                                     
-                                    {/* Staggered Tags */}
+                                    {/* Staggered Tags mapped to strict variants */}
                                     <motion.div 
                                         initial="hidden"
                                         whileInView="visible"
                                         viewport={{ once: true }}
-                                        variants={{
-                                            hidden: { opacity: 0 },
-                                            visible: {
-                                                opacity: 1,
-                                                transition: { staggerChildren: 0.1, delayChildren: 0.5 }
-                                            }
-                                        }}
+                                        variants={tagContainerVariants}
                                         className="flex flex-wrap gap-2 mt-auto relative z-30 pointer-events-none"
                                     >
                                         {project.tags.map((tag, tagIndex) => (
                                             <motion.span
                                                 key={tagIndex}
-                                                variants={{
-                                                    hidden: { opacity: 0, y: 10 },
-                                                    visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
-                                                }}
+                                                variants={tagVariants}
                                                 className="px-3 py-1.5 text-[10px] md:text-xs uppercase tracking-widest font-mono text-zinc-400 border border-zinc-800 bg-black rounded-none group-hover:border-zinc-500 transition-colors duration-300"
                                             >
                                                 {tag}
