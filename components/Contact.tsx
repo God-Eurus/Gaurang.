@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Mail, Github, Twitter, Linkedin, Send } from 'lucide-react'
-import { useState } from 'react'
+import { useForm, ValidationError } from '@formspree/react'
 
 export function Contact() {
     const socialLinks = [
@@ -12,17 +12,7 @@ export function Contact() {
         { icon: Mail, href: "mailto:hello@example.com", label: "Email" },
     ]
 
-    const [formState, setFormState] = useState({
-        name: '',
-        email: '',
-        message: ''
-    })
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault()
-        // Handle form submission logic here
-        console.log('Form submitted:', formState)
-    }
+    const [state, handleSubmit] = useForm("xbdrekop");
 
     return (
         <section className="w-full py-12 md:py-16 lg:py-24 bg-black relative overflow-hidden" id="contact">
@@ -66,53 +56,76 @@ export function Contact() {
                         transition={{ duration: 0.5, delay: 0.2 }}
                         viewport={{ once: true }}
                     >
-                        <form onSubmit={handleSubmit} className="space-y-8">
-                            <div className="space-y-2">
-                                <label htmlFor="name" className="sr-only">Name</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    placeholder="Your Name"
-                                    value={formState.name}
-                                    onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                                    className="w-full bg-transparent border-b border-zinc-800 py-4 text-white placeholder:text-zinc-600 focus:outline-none focus:border-white transition-colors text-lg"
-                                />
+                        {state.succeeded ? (
+                            <div className="flex flex-col items-center justify-center p-8 bg-zinc-900/50 rounded-lg border border-zinc-800 text-center">
+                                <h3 className="text-2xl font-semibold text-white mb-2">Message Sent!</h3>
+                                <p className="text-neutral-400">Thanks for reaching out. I'll get back to you soon.</p>
                             </div>
+                        ) : (
+                            <form onSubmit={handleSubmit} className="space-y-8">
+                                <div className="space-y-2">
+                                    <label htmlFor="name" className="sr-only">Name</label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        placeholder="Your Name"
+                                        className="w-full bg-transparent border-b border-zinc-800 py-4 text-white placeholder:text-zinc-600 focus:outline-none focus:border-white transition-colors text-lg"
+                                    />
+                                    <ValidationError
+                                        prefix="Name"
+                                        field="name"
+                                        errors={state.errors}
+                                        className="text-red-500 text-sm"
+                                    />
+                                </div>
 
-                            <div className="space-y-2">
-                                <label htmlFor="email" className="sr-only">Email</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    placeholder="Your Email"
-                                    value={formState.email}
-                                    onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                                    className="w-full bg-transparent border-b border-zinc-800 py-4 text-white placeholder:text-zinc-600 focus:outline-none focus:border-white transition-colors text-lg"
-                                />
-                            </div>
+                                <div className="space-y-2">
+                                    <label htmlFor="email" className="sr-only">Email</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        placeholder="Your Email"
+                                        className="w-full bg-transparent border-b border-zinc-800 py-4 text-white placeholder:text-zinc-600 focus:outline-none focus:border-white transition-colors text-lg"
+                                    />
+                                    <ValidationError
+                                        prefix="Email"
+                                        field="email"
+                                        errors={state.errors}
+                                        className="text-red-500 text-sm"
+                                    />
+                                </div>
 
-                            <div className="space-y-2">
-                                <label htmlFor="message" className="sr-only">Message</label>
-                                <textarea
-                                    id="message"
-                                    rows={4}
-                                    placeholder="Tell me about your project..."
-                                    value={formState.message}
-                                    onChange={(e) => setFormState({ ...formState, message: e.target.value })}
-                                    className="w-full bg-transparent border-b border-zinc-800 py-4 text-white placeholder:text-zinc-600 focus:outline-none focus:border-white transition-colors text-lg resize-none"
-                                />
-                            </div>
+                                <div className="space-y-2">
+                                    <label htmlFor="message" className="sr-only">Message</label>
+                                    <textarea
+                                        id="message"
+                                        name="message"
+                                        rows={4}
+                                        placeholder="Tell me about your project..."
+                                        className="w-full bg-transparent border-b border-zinc-800 py-4 text-white placeholder:text-zinc-600 focus:outline-none focus:border-white transition-colors text-lg resize-none"
+                                    />
+                                    <ValidationError
+                                        prefix="Message"
+                                        field="message"
+                                        errors={state.errors}
+                                        className="text-red-500 text-sm"
+                                    />
+                                </div>
 
-                            <div className="pt-4">
-                                <button
-                                    type="submit"
-                                    className="group flex items-center gap-2 text-white text-lg font-medium hover:text-zinc-300 transition-colors"
-                                >
-                                    Send Message
-                                    <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                </button>
-                            </div>
-                        </form>
+                                <div className="pt-4">
+                                    <button
+                                        type="submit"
+                                        disabled={state.submitting}
+                                        className="group flex items-center gap-2 text-white text-lg font-medium hover:text-zinc-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        {state.submitting ? 'Sending...' : 'Send Message'}
+                                        <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                    </button>
+                                </div>
+                            </form>
+                        )}
                     </motion.div>
                 </div>
             </div>
