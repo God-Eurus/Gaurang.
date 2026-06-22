@@ -14,19 +14,35 @@ interface Project {
 }
 
 const projects: Project[] = [
-    {
+      {
+    title: "AKFD Studio",
+    description: "Custom Shopify theme for a premium furniture and design brand, focused on craftsmanship, editorial storytelling, and a refined shopping experience.",
+    tags: ["Shopify", "Liquid", "Custom Theme"],
+    link: "https://akfdstudio.com",
+    image: "/akfd.png",
+},
+{
         title: "The Craftings",
         description: "A digital showcase for bespoke design and creative assets. Features a minimalist gallery and interactive portfolio elements.",
         tags: ["Next.js", "Framer Motion", "GSAP"],
         link: "https://thecraftings.com",
-        image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=900&auto=format&fit=crop",
+        image: "/craftings.png",
     },
+
+{
+    title: "Curiocty Box",
+    description: "Custom Shopify theme for a books, stationery, and gifts store featuring curated collections, category-driven navigation, and a modern retail experience.",
+    tags: ["Shopify", "Liquid", "Custom Theme"],
+    link: "https://curioctybox.com",
+    image: "/curiocty.png",
+},
+    
     {
         title: "Maison No. 3",
         description: "A digital presence for a forward-thinking creative marketing agency. Features a minimalist, luxury aesthetic and elegant animations to showcase premium campaigns.",
         tags: ["Next.js", "GSAP", "Tailwind CSS"],
         link: "https://www.maisonnoiii.com/",
-        image: "https://images.unsplash.com/photo-1629904853716-f0bc54eea481?q=80&w=2070&auto=format&fit=crop",
+        image: "/maison.png",
     },
     {
         title: "Razlot",
@@ -47,7 +63,7 @@ const projects: Project[] = [
         description: "Luxury property showcase featuring a dark maroon aesthetic, immersive galleries, and premium service listings.",
         tags: ["Next.js", "GSAP", "Radix UI"],
         link: "https://katewacompanies.in",
-        image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1200&auto=format&fit=crop",
+        image: "/treasure.png",
     }
 ]
 
