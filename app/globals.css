@@ -45,6 +45,24 @@
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
   --animate-spotlight: spotlight 2s ease .75s 1 forwards;
+  --animate-drift: drift 11s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-fade-in: fade-in 1.2s ease-out both;
+  --animate-scroll-line: scroll-line 1.6s ease-in-out infinite;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes scroll-line {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(200%); }
+  }
+
   
   @keyframes spotlight {
     0% {
@@ -134,4 +152,25 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* ArcCursor replaces the native cursor (same query as components/ui/arc-cursor.tsx) */
+@media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html, html * { cursor: none !important; }
+}
+
+/* entrance animations are decorative: show content immediately for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up, .animate-fade-in { animation: none; }
+}
+
+/* keyframes used by arbitrary animate-[name_…] utilities live outside @theme:
+   Tailwind only emits @theme keyframes when a named --animate-* utility uses them */
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) rotate(-10deg); }
+  50% { transform: translate(-14px, -18px) rotate(8deg); }
+}
+@keyframes alien-walk {
+  from { transform: rotate(var(--walk-from)); }
+  to { transform: rotate(var(--walk-to)); }
 }

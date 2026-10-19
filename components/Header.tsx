@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { cn } from "@/lib/utils"
 
@@ -11,20 +10,9 @@ export function Header() {
         const handleScroll = () => {
             setScrolled(window.scrollY > 50)
         }
-        window.addEventListener('scroll', handleScroll)
+        window.addEventListener('scroll', handleScroll, { passive: true })
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
-
-    // Smooth scroll handler function
-    const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-        e.preventDefault();
-        const element = document.getElementById(id);
-        if (element) {
-            // Offset for the fixed header height (approx 80px)
-            const y = element.getBoundingClientRect().top + window.scrollY - 100;
-            window.scrollTo({ top: y, behavior: 'smooth' });
-        }
-    };
 
     return (
         <header
@@ -36,19 +24,17 @@ export function Header() {
             )}
         >
             <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
-                <Link
-                    href="/"
-                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                <a
+                    href="#top"
                     className="text-xl font-bold text-white tracking-tighter hover:opacity-80 transition-opacity"
                 >
                     Gaurang.
-                </Link>
+                </a>
 
                 <nav className="flex items-center gap-4 md:gap-8">
                     {/* Navigation Link */}
                     <a
                         href="#projects"
-                        onClick={(e) => scrollToSection(e, 'projects')}
                         className="text-sm font-medium text-zinc-400 hover:text-white transition-colors duration-300"
                     >
                         Projects
@@ -57,7 +43,6 @@ export function Header() {
                     {/* Primary CTA Button */}
                     <a
                         href="#contact"
-                        onClick={(e) => scrollToSection(e, 'contact')}
                         className={cn(
                             "px-5 py-2 rounded-full text-sm font-medium transition-all duration-300",
                             "bg-white text-black hover:bg-zinc-200", // Light Mode style
